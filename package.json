@@ -1,7 +1,9 @@
 {
   "name": "golems-client",
-  "description": "simple client for the golems.io REST API based on request",
+  "description": "simple request based client for the golems REST API",
   "version": "0.0.1",
+  "author": "golems.io <golems.io@gmail.com>",
+  "repository": "https://github.com/golems-io/node-golems-client.git",
   "main": "golems-client.js",
   "dependencies": {
     "request": ">= 2.9.100"
