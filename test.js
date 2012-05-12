@@ -1,8 +1,8 @@
 var Client = require("./golems-client").Client;
 
-var T = 8, t = T, N = 128, n = 0, start = 0;
+var T = 8, t = T, N = 1/*28*/, n = 0, start = 0;
 
-var c = new Client();
+var c = new Client({ hostname: "localhost", port: 6013 });
 
 process.on('glom', function (t) {
   if (!(n % T)) { console.log(n + t + 1, '/', N); }
@@ -24,4 +24,11 @@ function fire(threads) {
   for (var i = 0; i < threads; i++) process.emit("glom", i);
 }
 
-fire(T);
+c.authorize("user@example.com", "example", function (response) {
+  console.log("authorized for %d distinct golems", response.limit);
+  c.schema(function (schema) {
+    console.log("using schema: %j", schema);
+    fire(T);
+  });
+});
+
